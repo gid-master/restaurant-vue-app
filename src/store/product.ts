@@ -131,7 +131,25 @@ export default {
         const product: IProduct = state.products.find(
           (item: IProduct) => item.sku === data.productSku
         );
-        commit("PREFERRED_PRODUCT", product);
+
+        commit(
+          "PREFERRED_PRODUCT",
+          product
+            ? {
+                ...product,
+                additionals: [
+                  ...product.additionals.map(item => {
+                    {
+                      return {
+                        ...item,
+                        quantity: 0
+                      };
+                    }
+                  })
+                ]
+              }
+            : null
+        );
       }
     }
   }
