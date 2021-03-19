@@ -4,38 +4,62 @@ The idea behind this project is to cover some of the most important functionalit
 
 ![](doc/demo.gif)
 
+## Quick Start
+
+Firstly, clone and install all necessary packages, then start it locally.
+
+```
+> git clone https://github.com/gid-master/restaurant-vue-app.git
+
+> npm install
+
+> npm start
+```
+
+Initially the application will work normally because it's using mock data. However, if you want to connect to a backend API, you need to have the <strong>node.js</strong> project up running.
+
+[Grab the NodeJs API Project right here](https://github.com/gid-master/restaurant-node-api)
+
+Once you have the API running, you just need to change the environment variable to be able to listen to the endpoins, the variable can be found inside .env file in the root folder.
+
+```
+VUE_APP_BACKEND_TARGET=api
+```
+
+That's all, now you can also have the project listening to the backend API.
+
 ## Application Content
 
-* [Devices Suport](#devices-support)
-* [Vue 3 Approaches](#vue-3-approaches)
-* [How to Run](#how-tu-run)
-* [Using Mock](#using-mock)
-* [Using API's](#using-api's)
-* [Application Modules](#application-modules)
-* [Structure & Flow](#structure-&-flow)
-* [Progressive Web Application (PWA)](#progressive-web-application-(pwa))
-* [Firebase Deployment](#firebase-deployment)
-
+- [Devices Suport](#devices-support)
+- [Vue 3 Approaches](#vue-3-approaches)
+- [How to Run](#how-tu-run)
+- [Using Mock](#using-mock)
+- [Using API's](#using-api's)
+- [Application Modules](#application-modules)
+- [Structure & Flow](#structure-&-flow)
+- [Progressive Web Application (PWA)](<#progressive-web-application-(pwa)>)
+- [Firebase Deployment](#firebase-deployment)
 
 ## Devices Support
+
 As this is a demo in order to show features of a specific framework, the application is not fully ready to support multiple screens sizes, browsers and devices. However, you can check this repositoty which contains the same application developed for this responsive purpose.
 
 Check out the list of screens that can be used to play around with this demo.
+
 #### Mobile Support Only
 
-* Iphone 6/7/8
-* Iphone 6/7/8 Plus
-* Iphone X
-* Pixe 2
-* Pixe 2 XL
-* Galax S5
-* Moto G4
+- Iphone 6/7/8
+- Iphone 6/7/8 Plus
+- Iphone X
+- Pixe 2
+- Pixe 2 XL
+- Galax S5
+- Moto G4
 
 #### Browsers
 
-* Chrome
-* Safari
-
+- Chrome
+- Safari
 
 ## Vue 3 Approaches
 
@@ -43,95 +67,107 @@ There are some of the Vue 3 concepts that were approached in this application.\
 I used standard eslint and prettier settings, but feel free to switch to the one you like the most.\
 Some developers can feel annoyed working with a line limit of 80 which is defined as default.
 
-* Vue Config
-  * Proxy settings (request API using same local port)
-  * Global styles settings (access variables globally)
-  * Environment Variables (overriding proccess env)
-  * PWA to include custom service worker and manifest
-  * Fully typescript
+- Vue Config
 
-* Vuex
-  * Single source of truth
-  * Break logic down in modules and example using root state
-  * useStore hook
-  * Logic to transform data inside getters 
+  - Proxy settings (request API using same local port)
+  - Global styles settings (access variables globally)
+  - Environment Variables (overriding proccess env)
+  - PWA to include custom service worker and manifest
+  - Fully typescript
 
-* Axio
-  * Centralize logic using services
-  * Interceptor to handle responses and requests (header token and response status)
-  * Jwt Authentication (cookie authentication)
-  * Handling server issues and redirect to error pages
-  * Axio adapter to intercept http requests and use mock data instead
+- Vuex
 
-* Router
-  * Authentication Guards (protect authorized pages)
-  * ScrollBehavior (scroll page back to the top for same route)
-  * Lazy loading components
-  * Catch not found routes
-  * Using extra router data to hide or show specific page content
+  - Single source of truth
+  - Break logic down in modules and example using root state
+  - useStore hook
+  - Logic to transform data inside getters
 
-* Components
-  * View components as page route only
-  * Container x Presentational components (all logic in one place only)
-  * Encapsulated styles using global variables to keep consistent
-  * Each module in its folder using container component as start point to deal with the entire logic
-  * Props and Event Emmiter in order to communicate parent with child components
-  * Shared components used across the entire application
-  * Different watchers using one or multiple parameter and also immediate settings
-  * Slots to add dynamic content in the component
+- Axio
 
-* Lifecycle Hook
-  * Mounted to execute function just when the component is ready to manipulate DOM elements
-  * Unmonted to kill events
-  * Watcher to execute functions based on props changes
+  - Centralize logic using services
+  - Interceptor to handle responses and requests (header token and response status)
+  - Jwt Authentication (cookie authentication)
+  - Handling server issues and redirect to error pages
+  - Axio adapter to intercept http requests and use mock data instead
 
-* Directives
-  * Fallback images (load fallback image if path is not found)
+- Router
 
-* Utils Format (used as previous deprecated filters)
-  * Format dynamic image path
-  * Format currency
+  - Authentication Guards (protect authorized pages)
+  - ScrollBehavior (scroll page back to the top for same route)
+  - Lazy loading components
+  - Catch not found routes
+  - Using extra router data to hide or show specific page content
 
-* Utils Storage
-  * Save cart into local storage (can be recovered from offline mode)
-  * Save token authentication in cookie (best practice because doesn't use session)
+- Components
 
-* Reactive form
-  * Encapsulate entire logic inside the form (returns only after having a valid data)
-  * Vuelidate to validate forms (standard, custom and mixed validations)
-  * Native validations and also custom validations to specific field
-  * Force submit form though parent component (when the submit button is in a different component)
-  * Two ways data bind using v-model (example in login components)
+  - View components as page route only
+  - Container x Presentational components (all logic in one place only)
+  - Encapsulated styles using global variables to keep consistent
+  - Each module in its folder using container component as start point to deal with the entire logic
+  - Props and Event Emmiter in order to communicate parent with child components
+  - Shared components used across the entire application
+  - Different watchers using one or multiple parameter and also immediate settings
+  - Slots to add dynamic content in the component
 
-* PWA
-  * Manifest with main settings for theme, images, orientation and name
-  * Install home screen shortcut (delegating logic to the application)
-  * Service Workers to work with offline data (caching products API to be able to work offline)
-  * Cache assets (server images and local assets)
-  * Request a new version update (update only if user agree with it)
-  * Great lib to generate manifest file and images automatically based on logo svg
-  * Custom events to have the communication between service workers and application
-  * Connection, online and offline notifications.
-  * Push notification permission (this one has server interaction)
+- Lifecycle Hook
 
-* Concepts
-  * Composition API 
-  * Reactivity using reactive and ref variables
-  * Computed to transform data and listen to store
-  * Props and emitters to have components communication
-  * DOM used as ref (call child component functions directly from parent)
-  * Get rid of filters, now functions have the same performance as old filters
+  - Mounted to execute function just when the component is ready to manipulate DOM elements
+  - Unmonted to kill events
+  - Watcher to execute functions based on props changes
 
-* Styles
-  * Scss structure
-  * Encapsulated styles
-  * Global typography
-  * Global colors (palette of colors used in the applciaiton)
-  * Consistent paddings and margins across all components
-  * Bind classes using conditions
+- Directives
 
+  - Fallback images (load fallback image if path is not found)
+
+- Utils Format (used as previous deprecated filters)
+
+  - Format dynamic image path
+  - Format currency
+
+- Utils Storage
+
+  - Save cart into local storage (can be recovered from offline mode)
+  - Save token authentication in cookie (best practice because doesn't use session)
+
+- Reactive form
+
+  - Encapsulate entire logic inside the form (returns only after having a valid data)
+  - Vuelidate to validate forms (standard, custom and mixed validations)
+  - Native validations and also custom validations to specific field
+  - Force submit form though parent component (when the submit button is in a different component)
+  - Two ways data bind using v-model (example in login components)
+
+- PWA
+
+  - Manifest with main settings for theme, images, orientation and name
+  - Install home screen shortcut (delegating logic to the application)
+  - Service Workers to work with offline data (caching products API to be able to work offline)
+  - Cache assets (server images and local assets)
+  - Request a new version update (update only if user agree with it)
+  - Great lib to generate manifest file and images automatically based on logo svg
+  - Custom events to have the communication between service workers and application
+  - Connection, online and offline notifications.
+  - Push notification permission (this one has server interaction)
+
+- Concepts
+
+  - Composition API
+  - Reactivity using reactive and ref variables
+  - Computed to transform data and listen to store
+  - Props and emitters to have components communication
+  - DOM used as ref (call child component functions directly from parent)
+  - Get rid of filters, now functions have the same performance as old filters
+
+- Styles
+  - Scss structure
+  - Encapsulated styles
+  - Global typography
+  - Global colors (palette of colors used in the applciaiton)
+  - Consistent paddings and margins across all components
+  - Bind classes using conditions
 
 ## How to Run
+
 This is the frontend application only, however, you can run it using either mocked data (already in place) or API server.
 
 In order to have it runing along with a backend API, you need to follow the steps for further settings.
@@ -139,23 +175,25 @@ In order to have it runing along with a backend API, you need to follow the step
 <br/>
 
 Install all necessary packages.
+
 ```
 npm install
 ```
+
 <br/>
 
 Initialize the application
+
 ```
 npm start
 ```
 
-
-
 ## Using Mock
+
 There is a folder called mocks inside the project workspace, and this folder contains files with preset data that simulates the backend responses.
 
 <b>axios-mock-adapter</b> used to intercept http requests and return the mocked data.\
-Check out the index.ts file inside the mock folder. 
+Check out the index.ts file inside the mock folder.
 
 Open the .env file and enable or disable this option whenever you want, just change the <b>VUE_APP_BACKEND_TARGET</b> value to mock, after that all data will come from the mock folder.
 
@@ -165,16 +203,16 @@ However, the best part is that you don't need to do anything, it works automatic
 
 Ps: Clear your checkout storage to avoid product ids issue if you were using API project before.
 
-
 ## Using API's
+
 The idea of this project is show how simple is having the same application working across different technologies.
 
 There are a few different options of backend to test the application using API's.
 
-* Node JS
-* .Net Core
-* Go Lang
-* Python
+- Node JS
+- .Net Core
+- Go Lang
+- Python
 
 <br/>
 
@@ -188,105 +226,110 @@ Notice that this proxy settings works only on development mode, once you build t
 
 You can also have the same project using serverless.
 
-* Firebase
-* AWS
-
-
+- Firebase
+- AWS
 
 ## Application Modules
+
 The application was split up in different modules, such as:
 
-* Login
-  * Register a new user
-  * Sign in using you account
+- Login
 
-* Error
-  * Not found
-  * Server
-  * Unauthorized
+  - Register a new user
+  - Sign in using you account
 
-* Account
-  * Logout option
-  * Orders Summary
-  * Order details
-  * Review orders
+- Error
 
-* Home
-  * Welcome intro
-  * Suggestions
-  * Special Dishes
-  * Promotions
-  * Shortcut buttons
-  * PWA intercept install button logic
+  - Not found
+  - Server
+  - Unauthorized
 
-* Menu
-  * List all products
-  * Search for product name
-  * Filter product by category
-  * Sort dishes for review, price, calories, name or price.
+- Account
 
-* Product
-  * Product Details
-  * Ingredients
-  * Reviews summary
-  * Additional items
-  * Comments
-  * Related products
-  * Add to cart
+  - Logout option
+  - Orders Summary
+  - Order details
+  - Review orders
 
-* Checkout
-  * Double check product added to cart
-  * Edit or remove item form cart
-  * Add payment method
-  * Payment summary
-  * Process payment
-  * Add cart in local storage (can be recovered)
+- Home
 
-* Shared 
-  * Buttons icons, standard and increment
-  * Layouts for wrappers, container and blocks
-  * Modals using backdrop, bottom sheet and snack bar
-  * Grids with scrollable row or vertical view
-  * Cards that represent a macro view of the product
-  * PWA control install app, update app and online / offline notification
+  - Welcome intro
+  - Suggestions
+  - Special Dishes
+  - Promotions
+  - Shortcut buttons
+  - PWA intercept install button logic
 
+- Menu
+
+  - List all products
+  - Search for product name
+  - Filter product by category
+  - Sort dishes for review, price, calories, name or price.
+
+- Product
+
+  - Product Details
+  - Ingredients
+  - Reviews summary
+  - Additional items
+  - Comments
+  - Related products
+  - Add to cart
+
+- Checkout
+
+  - Double check product added to cart
+  - Edit or remove item form cart
+  - Add payment method
+  - Payment summary
+  - Process payment
+  - Add cart in local storage (can be recovered)
+
+- Shared
+  - Buttons icons, standard and increment
+  - Layouts for wrappers, container and blocks
+  - Modals using backdrop, bottom sheet and snack bar
+  - Grids with scrollable row or vertical view
+  - Cards that represent a macro view of the product
+  - PWA control install app, update app and online / offline notification
 
 ## Structure & Flow
+
 Short description about how the project folder structure works and how the data and components are connected.
 
-
 #### Routers
+
 Routers point just to view files (inside view folder).\
 This is the place where we keep all load lazing logic and also the guards to prevent any unauthorized access.
 
-
 #### Views
+
 Views are just simple components that represent the application pages and its modules.\
 Shouldn't have any logic inside this components.
 
-
 #### Components
+
 Each view imports its container components which handles the entire logic of the specific module.\
 The components folder has all modules subfolders, and inside each module subfolder a structure followed by container and presentational components.\
 The communication between container and presentational components should be done through props, events and store actions only.
 
-
 #### Container Components
+
 This component is responsible for dealing with the entire module logic.\
 Here is the place where we dispatch events and get data from store, then we pass all information to the presentational components display on the screen.
 
-
 #### Presentational Components
+
 This component is responsible for showing data only, mostly to keep its logic encapsulated.\
 Some presentational components has its own logic, such as, form validation or accordion, however, always using data loaded from container component.
 
-
-
 #### Shared Components
+
 This folder has all generic components used across the entire projects, such as, grid, card, wrapper and block layout. So, if you change any details in these components will affect the entire project.
 
-
 #### Data Flow
+
 The entire logic goes through the store to manage the application state.\
 We simply use the dispatchers to request when some specific data should be processed.
 
@@ -294,9 +337,7 @@ Then inside the container components we use getters to listen to all states, and
 
 We dispatch 2 requests when the application is initialized, after that all dispatches are done inside the containers, and that's how the communication starts.
 
-
-
-## Progressive Web Application (PWA) 
+## Progressive Web Application (PWA)
 
 This application fully supports PWA and we deal with all major functionalities.
 
@@ -305,17 +346,16 @@ After the first access, the application works entirely offline, so the user can 
 
 In order to get the PWA working properly for this project, we need to customize only a few files.\
 
-* Vue Config
-* Manifest
-* Service Workers
-* PWA Controller
-* Push notification using VAPID Key
-
+- Vue Config
+- Manifest
+- Service Workers
+- PWA Controller
+- Push notification using VAPID Key
 
 #### Vue Config
+
 If you don't define workbox option, vue will automatically create the service-wroker file.\
 However, we need to create our own customization in order to cache a few extra data, after that PWA will listen to our customized service worker file.
-
 
 #### Manifest
 
@@ -326,14 +366,14 @@ This file is responsible for personalizing your application, predefined settings
 
 There are 2 different service wokers, and both of them are located inside the src folder.
 
-* registerServiceWorker.ts\
-This file pretty much register the custom service worker mentioned below and makes available a few hooks to interact with your applicaiton.\
-In this project we are using the update and offline hooks to dispatch customized events to our application in order to have some interaction with the user.
+- registerServiceWorker.ts\
+  This file pretty much register the custom service worker mentioned below and makes available a few hooks to interact with your applicaiton.\
+  In this project we are using the update and offline hooks to dispatch customized events to our application in order to have some interaction with the user.
 
-* service-worker.js\
-This file uses pretty much the workbox and handle all logic to cache some application content.\
-In addition to caching the applicaiton we also cache server images and the main product request.\
-Then with the product request cached, we are able to have the entire application working offline normally.
+- service-worker.js\
+  This file uses pretty much the workbox and handle all logic to cache some application content.\
+  In addition to caching the applicaiton we also cache server images and the main product request.\
+  Then with the product request cached, we are able to have the entire application working offline normally.
 
 #### PWA Controler
 
@@ -364,14 +404,12 @@ Or you can also use this website to be able to test push notifications creating 
 
 You can also use this website to be able to test push notifications creating public / private key and also simulate push messages.
 
-
 webpush doc: https://web-push-codelab.glitch.me/
-
 
 Send message using this structure:
 
 ```
-{ 
+{
   "notification": {
     "title":"Restaurant",
     "icon":"img/icons/favicon-32x32.png",
@@ -404,19 +442,20 @@ The project already contains all the images and the manifest file already in pla
 All the images can be found inside the folder public/img/icons\
 These images are defined inside the manifest.json file located in the same folder level, so this file is responsible for personalizing your application, predefined settings like theme, icons, name and orientation.
 
-
 <br/>
 
 Firtly, you need to install an auxiliar package globaly.
+
 ```
 npm install -g vue-pwa-asset-generator
 ```
 
 <br/>
 
-Secondly, add your SVG logo inside the root folder of the project. 
+Secondly, add your SVG logo inside the root folder of the project.
 
 After that run the command below and double check the all files will end up inside the public folder of your project.
+
 ```
 vue-asset-generate -a logo.svg
 ```
@@ -424,10 +463,10 @@ vue-asset-generate -a logo.svg
 <br />
 
 We have added a short script inside the package file.
+
 ```
 npm run pwa-generate
 ```
-
 
 ## Firebase Deployment
 
@@ -443,6 +482,7 @@ After that you can simply use CLI commands to deploy your project.
 <br />
 
 Firstly, install the firebase tools globaly.
+
 ```
 npm install -g firebase-tools
 ```
@@ -450,6 +490,7 @@ npm install -g firebase-tools
 <br />
 
 Secondly, authenticate the CLI using your user and password.
+
 ```
 firebase login
 ```
@@ -457,6 +498,7 @@ firebase login
 <br />
 
 Finally, use the script already in place to deploy your project.
+
 ```
 npm run deploy
 ```
